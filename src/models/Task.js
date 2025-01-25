@@ -8,7 +8,11 @@ export const Task = sequelize.define('tasks', {
         autoIncrement: true
     },
     name: {
-        type: DataTypes.STRING   
+        type: DataTypes.STRING,
+        allowNull: false, 
+        validate: {
+            notEmpty: true,
+        },
     },
     done: {
         type: DataTypes.BOOLEAN,

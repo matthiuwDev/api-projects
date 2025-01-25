@@ -10,10 +10,18 @@ export const Project = sequelize.define('projects', {
         autoIncrement: true  
     },
     name: {
-        type: DataTypes.STRING   
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+            notEmpty: true, 
+        },
     },
     priority: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        validate: {
+            min: 1,
+            max: 5,
+        },
     },
     description: {
         type: DataTypes.STRING
