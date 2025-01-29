@@ -8,7 +8,7 @@ class ProjectsService{
 
             return projects;
         } catch (error) {
-            
+            throw new Error("Error al obtener los proyectos: " + error.message);
         }
     }
 
@@ -19,6 +19,37 @@ class ProjectsService{
             return createdProject; 
         } catch (error) {
             throw new Error("Error al crear el proyecto: " + error.message);
+        }
+    }
+
+    updateProject = async (id, changes) => {
+        try {
+            const project = await Project.findByPk(id);
+            
+            if (!project) {
+                throw new Error(`No se encontró el proyecto con ID ${id}`);
+            }
+    
+            await project.update(changes); 
+    
+            return project; 
+        } catch (error) {
+            throw new Error(`Error al actualizar el proyecto: ${error.message}`);
+        }
+    };
+    
+
+    deleteProject = async (id) => {
+        try {
+            await Project.destroy({
+               where: {
+                id,
+               }
+            })
+
+            
+        } catch (error) {
+            throw new Error("Error al eliminar el proyecto: " + error.message);
         }
     }
 }

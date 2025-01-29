@@ -5,8 +5,8 @@ const router = Router();
 router
     .get('/', projectsController.getProjects)
     .post('/', projectsController.createProject)
-    .put('/:id')
-    .delete('/:id')
+    .put('/:id', projectsController.updateProject)
+    .delete('/:id', projectsController.deleteProject)
     .get('/:id')
 
 export default router;

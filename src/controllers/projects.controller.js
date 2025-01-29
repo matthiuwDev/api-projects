@@ -32,10 +32,41 @@ class ProjectsController{
 
             res.status(201).json({ status: "OK", data: createdProject });
         } catch (error) {
-            next(error); // Ahora next está correctamente definido
+            next(error); 
+        }
+    };
+
+    updateProject = async (req, res, next) => {
+        try {
+            const { body, params: { id } } = req;  
+            
+            if (!id) {
+                return res.status(400).json({ 
+                    status: "FAILED", 
+                    data: { error: "Parámetro ':id' no puede estar vacío " } 
+                });
+            }
+    
+            const updatedProject = await projectsService.updateProject(id, body); 
+    
+            res.status(200).json({ status: "OK", data: updatedProject });
+        } catch (error) {
+            next(error);
         }
     };
     
+
+    deleteProject = async (req, res, next) => {
+        const { id } = req.params;
+
+        try {
+            projectsService.deleteProject(id)
+
+            res.sendStatus(204)
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
 export default new ProjectsController();
