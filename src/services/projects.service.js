@@ -12,6 +12,25 @@ class ProjectsService{
         }
     }
 
+    getOneProject = async (id) => {
+        try {
+            const project = await Project.findOne({
+                where: {
+                    id
+                }
+            });
+            
+            if (!project) {
+                throw new Error(`No se encontró el proyecto con ID ${id}`);
+            }
+    
+            return project; 
+            
+        } catch (error) {
+            throw new Error("Error al obtener el proyecto: " + error.message);
+        }
+    }
+
     createProject = async (newProject) => {
         try {
             const createdProject = await Project.create(newProject);

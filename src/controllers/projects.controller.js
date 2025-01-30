@@ -5,7 +5,19 @@ class ProjectsController{
         try {
             const projects = await projectsService.getProjects();
 
-            res.send({ status: 'OK', data: projects })
+            res.send({ status: 'OK', data: projects });
+        } catch (error) {
+            next(error);
+        }
+    }
+
+    getOneProject = async (req, res, next) => {
+        const { id } = req.params;
+
+        try {
+            const project = await projectsService.getOneProject(id);
+
+            res.send({ status: 'OK', data: project })
         } catch (error) {
             next(error);
         }

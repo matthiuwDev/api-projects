@@ -7,6 +7,6 @@ router
     .post('/', projectsController.createProject)
     .put('/:id', projectsController.updateProject)
     .delete('/:id', projectsController.deleteProject)
-    .get('/:id')
+    .get('/:id', projectsController.getOneProject)
 
 export default router;
