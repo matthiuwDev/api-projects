@@ -5,7 +5,7 @@ const router = Router();
 router
     .get('/', taskController.getTasks)
     .post('/', taskController.createTask)
-    .put('/:id', )
+    .put('/:id',taskController.updateTask)
     .delete('/:id', taskController.deleteTask)
     .get('/:id', taskController.getOneTask)
 

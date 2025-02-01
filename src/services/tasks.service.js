@@ -39,6 +39,23 @@ class TaskService{
         }
     }
 
+    updateTask = async (id, changes) => {
+        try {
+            const task = await Task.findByPk(id);
+
+            if(!task){
+                throw new Error(`No se encontró la tarea con ID ${id}`)
+            }
+
+            await task.update(changes);
+
+            return task;
+        } catch (error) {
+            throw new Error(`Error al actualizar la tarea: ${error.message}`);
+        }
+
+    }
+
     deleteTask = async (id) => {
         try {
             await Task.destroy({

@@ -42,7 +42,7 @@ class ProjectsController{
 
             const createdProject = await projectsService.createProject(newProject);
 
-            res.status(201).json({ status: "OK", data: createdProject });
+            res.status(201).json({ status: "CREATED", data: createdProject });
         } catch (error) {
             next(error); 
         }

@@ -42,7 +42,7 @@ class TaskController{
 
             const createdTask = await tasksService.createTask(newTask);
 
-            res.status(201).json({ status: "OK", data: createdTask });
+            res.status(201).json({ status: "CREATED", data: createdTask });
 
         } catch (error) {
             next(error)
@@ -51,12 +51,21 @@ class TaskController{
     }
 
     updateTask = async (req, res, next) => {
-        const { id } = req.params;
-
         try {
             const { body, params: { id } } = req;
-        } catch (error) {
+
+            if (!id) {
+                return res.status(400).json({ 
+                    status: "FAILED", 
+                    data: { error: "Parámetro ':id' no puede estar vacío " } 
+                });
+            }
+
+            const updatedTask = await tasksService.updateTask(id, body);
             
+            res.status(200).json({ status: "OK", data: updatedTask })
+        } catch (error) {
+            next(error);
         }
     }
 

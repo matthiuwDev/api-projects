@@ -8,5 +8,4 @@ router
     .put('/:id', projectsController.updateProject)
     .delete('/:id', projectsController.deleteProject)
     .get('/:id', projectsController.getOneProject)
-
 export default router;
