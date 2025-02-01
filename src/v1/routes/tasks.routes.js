@@ -4,9 +4,9 @@ const router = Router();
 
 router
     .get('/', taskController.getTasks)
-    .post('/')
-    .put('/:id')
-    .delete('/:id')
-    .get('/:id')
+    .post('/', taskController.createTask)
+    .put('/:id', )
+    .delete('/:id', taskController.deleteTask)
+    .get('/:id', taskController.getOneTask)
 
 export default router;
