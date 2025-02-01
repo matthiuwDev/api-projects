@@ -1,4 +1,5 @@
 import { Project } from "../models/Project.js";
+import { Task } from "../models/Task.js";
 
 class ProjectsService{
 
@@ -69,6 +70,18 @@ class ProjectsService{
             
         } catch (error) {
             throw new Error("Error al eliminar el proyecto: " + error.message);
+        }
+    }
+
+    getTasksByProject = async (id) => {
+        try {
+            const tasks = await Task.findAll({
+                where: { projectId: id }
+            });
+
+            return tasks;
+        } catch (error) {
+            throw new Error("Error al obtener las tareas de un proyecto: " + error.message);
         }
     }
 }

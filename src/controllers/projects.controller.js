@@ -79,6 +79,18 @@ class ProjectsController{
             next(error)
         }
     }
+
+    getTasksByProject = async (req, res, next) => {
+        const { id } = req.params;
+
+        try {
+            const tasks = await projectsService.getTasksByProject(id);
+
+            res.send({ status: 'OK', data: tasks });
+        } catch (error) {
+            next(error);
+        }
+    }
 }
 
 export default new ProjectsController();
