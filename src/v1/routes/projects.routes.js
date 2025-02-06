@@ -1,10 +1,12 @@
 import { Router } from "express";
 import projectsController from "../../controllers/projects.controller.js";
 const router = Router();
+import { validate } from "../../middlewares/validateData.middleware.js";
+import { project } from "../../middlewares/schemes/project.scheme.js";
 
 router
     .get('/', projectsController.getProjects)
-    .post('/', projectsController.createProject)
+    .post('/', validate(project), projectsController.createProject)
     .put('/:id', projectsController.updateProject)
     .delete('/:id', projectsController.deleteProject)
     .get('/:id', projectsController.getOneProject)
