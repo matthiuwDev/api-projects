@@ -9,11 +9,13 @@ const app = express();
 
 //Middlewares
 app.use(express.json())
-app.use(errorHandler);
+
 
 //Rutas
 app.use("/api/v1/projects", v1ProjectsRouter)
 app.use("/api/v1/tasks", v1TaskRouter)
+
+app.use(errorHandler);
 
 
 export default app;

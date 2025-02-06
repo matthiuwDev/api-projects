@@ -1,9 +1,9 @@
 // Middleware para manejo global de errores
-export const errorHandler = (err, req, res, next) => {
-    console.error(err); 
-    res.status(err.status || 500).json({
+export const errorHandler = (error, req, res, next) => {
+    console.error(error); 
+    res.status(error.status || 500).json({
         status: "FAILED",
-        message: err.message || "Error interno del servidor",
+        message: error.message || "Error interno del servidor",
     });
 };
 
