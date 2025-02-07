@@ -27,13 +27,6 @@ class ProjectsController{
         try {
             const { body } = req;
 
-            if (!body.name || !body.priority || !body.description) {
-                return res.status(400).json({
-                    status: "FAILED",
-                    data: { error: "Faltan campos obligatorios" },
-                });
-            }
-
             const newProject = {
                 name: body.name,
                 priority: body.priority,
