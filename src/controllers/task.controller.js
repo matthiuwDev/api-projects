@@ -26,13 +26,6 @@ class TaskController{
     createTask = async (req,res, next) => {
         const { body } = req;
         try {
-            if(!body.name || !body.projectId){
-                return res.status(400).json({
-                    status: "FAILED",
-                    data: { error: "Faltan campos obligatorios" },
-                });
-            }
-
             const newTask = {
                 name: body.name,
                 done: body.done,
