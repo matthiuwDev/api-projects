@@ -1,11 +1,12 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
+import bcrypt from "bcrypt"
 
 export const User = sequelize.define('users', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: false
+        autoIncrement: true
     },
     name: {
         type: DataTypes.STRING,
@@ -30,5 +31,11 @@ export const User = sequelize.define('users', {
         }
     }
 }, {
-    timestamps: true
+    timestamps: true,
+    hooks: {
+        beforeCreate: async (user) => {
+            const saltRounds = 10; // Número de rondas para generar el hash
+            user.password = await bcrypt.hash(user.password, saltRounds);
+        }
+    }
 });
