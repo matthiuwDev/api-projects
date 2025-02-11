@@ -29,12 +29,16 @@ export const User = sequelize.define('users', {
         validate: {
             notEmpty: true,
         }
+    },
+    rolId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
     }
 }, {
     timestamps: true,
     hooks: {
         beforeCreate: async (user) => {
-            const saltRounds = 10; // Número de rondas para generar el hash
+            const saltRounds = 10;
             user.password = await bcrypt.hash(user.password, saltRounds);
         }
     }

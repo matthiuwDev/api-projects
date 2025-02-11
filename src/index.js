@@ -1,6 +1,9 @@
 import app from "./app.js";
 import { sequelize } from "./database/database.js"
 import { User } from "./models/User.js";
+import { Rol } from "./models/Rol.js";
+import { Task } from "./models/Task.js";
+import { Project } from "./models/Project.js";
 
 async function main(){
     try {
