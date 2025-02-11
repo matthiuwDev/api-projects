@@ -11,7 +11,9 @@ export const Rol = sequelize.define('roles', {
     name: {
         type: DataTypes.STRING,
         allowNull: false
-    }
+    },
+}, {
+    timestamps: false
 });
 
 Rol.hasMany(User, {
